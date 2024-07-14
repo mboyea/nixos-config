@@ -9,35 +9,28 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
-  # outputs = { nixpkgs, home-manager, ... } @ inputs:
   outputs = { nixpkgs, ... } @ inputs:
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      hostName = "maybenixlaptop";
+      diskName = "/dev/nvme0n1";
     in {
     nixosConfigurations = {
-      maybenixpc = lib.nixosSystem {
+      ${hostName} = lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
           ./configuration.nix
           inputs.disko.nixosModules.default
-          (import ./disko.nix { device = "/dev/nvme0n1"; })
+          (import ./disko.nix { device = diskName; })
           inputs.impermanence.nixosModules.impermanence
         ];
       };
     };
-    # homeConfigurations = {
-    #   admin = home-manager.lib.homeManagerConfiguration {
-    #     inherit pkgs;
-    #     modules = [ ./admin/home-manager/home.nix ];
-    #   };
-    # };
   };
 }

@@ -1,7 +1,7 @@
 {
   users.users.admin = {
     # set the admin user password to "admin" using the following one-liner:
-    # mkpasswd -m sha-512 admin | sed 's/\(\S*\).*/"\1"/' >> <path_to_config>/users/admin/pass.nix
+    # mkpasswd -m sha-512 admin | sed 's/\(\S*\).*/"\1"/' >> /etc/nixos/users/admin/pass.nix
     hashedPassword = import ./pass.nix;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
@@ -19,7 +19,7 @@
       "/home/admin"
     ];
     # DECLARATIVE PERSISTENCE EXAMPLE:
-    # users.username = {
+    # users.admin = {
     #   directories = [
     #     "code"
     #     "docs"
