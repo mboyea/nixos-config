@@ -63,7 +63,7 @@ Note that my process is slightly different from his, so follow these instruction
   ln -s hosts/<host_name>/disko.nix disko.nix
   ln -s hosts/<host_name>/flake.nix flake.nix
   ```
-* Modify your configuration using `nano /mnt/etc/nixos/configuration.nix` to contain:
+* Modify your configuration using `nano /mnt/etc/nixos/configuration.nix`:
   ```nix
   # For help editing Nix config files, use any of the following
   #  man configuration.nix
@@ -86,16 +86,18 @@ Note that my process is slightly different from his, so follow these instruction
         home-manager
       ];
     };
-  
+
+    # do not modify the following
     system.stateVersion = <leave_as_default_value>;
   }
   ```
-* Modify your flake using `nano /mnt/etc/nixos/flake.nix`:
+* Modify your flake to specify your host name and disk name using `nano /mnt/etc/nixos/flake.nix`:
   ```nix
   {
     <...>
     outputs = { nixpkgs, ... } @ inputs:
       let
+        <...>
         hostName = "<host_name>";
         diskName = "<disk_name>";
       in {
