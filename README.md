@@ -45,7 +45,7 @@ Note that my process is slightly different from his, so follow these instruction
   ```sh
   cd /mnt/etc/nixos
   git init
-  git remote add origin https://github.com/mboyea/nixos-config
+  git remote add origin https://github.com/<repo_path>
   git fetch
   git reset --mixed origin/main
   ```
