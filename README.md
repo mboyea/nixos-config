@@ -19,7 +19,7 @@ For a video to help you understand the installation process, see [Perfect NixOS 
 My thanks go out to him for helping me to learn NixOS.
 Note that my process is slightly different from his, so follow these instructions word for word after watching the video.
 
-* [Download the graphical NixOS installer](https://nixos.org/download/#graphical-iso-image).
+* [Download the graphical NixOS installer](https://nixos.org/download/).
 * [Prepare the NixOS installer onto a flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Making_the_installation_media).
 * [Boot the NixOS installer from the flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Booting_the_installation_media).
   Close the visual installer; we'll do everything in a terminal.
