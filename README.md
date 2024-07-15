@@ -39,7 +39,6 @@ Note that my process is slightly different from his, so follow these instruction
   ```sh
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"dev/<disk_name>"'`
   ```
-* Modify the flake file using `nano /tmp/disko.nix`.
 * Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`
 * Install git using `nix-shell -p git`.
 * Clone this repository into `/mnt/etc/nixos` using:
