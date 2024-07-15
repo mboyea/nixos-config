@@ -91,7 +91,7 @@ Note that my process is slightly different from his, so follow these instruction
   }
   ```
 * Modify your flake using `nano /mnt/etc/nixos/flake.nix`:
-  ```
+  ```nix
   {
     <...>
     outputs = { nixpkgs, ... } @ inputs:
