@@ -96,8 +96,8 @@ Note that my process is slightly different from his, so follow these instruction
     <...>
     outputs = { nixpkgs, ... } @ inputs:
       let
-        hostName = <host_name>;
-        diskName = <disk_name>;
+        hostName = "<host_name>";
+        diskName = "<disk_name>";
       in {
         <...>
       };
