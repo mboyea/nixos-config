@@ -31,6 +31,7 @@ Note that my process is slightly different from his, so follow these instruction
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/disko.nix -o /tmp/disko.nix
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/flake.nix -o /tmp/flake.nix
   ```
+  **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
 * Modify the disko file as you see fit using `nano /tmp/disko.nix`.
   Note that the `swap` partition should be at least 1.5x the amount of RAM you have installed (check using `free -g -h -t`) if you want the PC to support hibernation.
 * Find the `<disk_name>` you want to install NixOS onto using `lsblk`.
