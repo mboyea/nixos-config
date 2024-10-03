@@ -37,7 +37,7 @@ Note that my process is slightly different from his, so follow these instruction
   You're looking for something like `vda`, `sda`, `nvme0`, or `nvme0n1`.
 * Partition your disk using:
   ```sh
-  sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"dev/<disk_name>"'
+  sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"/dev/<disk_name>"'
   ```
 * Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`
 * Install git using `nix-shell -p git`.
