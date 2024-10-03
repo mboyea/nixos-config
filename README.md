@@ -19,17 +19,18 @@ For a video to help you understand the installation process, see [Perfect NixOS 
 My thanks go out to him for helping me to learn NixOS.
 Note that my process is slightly different from his, so follow these instructions word for word after watching the video.
 
-* [Download the graphical NixOS installer](https://nixos.org/download/).
+* [Download a graphical NixOS installer](https://nixos.org/download/).
+  The graphical installers connect to wireless internet networks easier.
 * [Prepare the NixOS installer onto a flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Making_the_installation_media).
 * [Boot the NixOS installer from the flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Booting_the_installation_media).
-  Close the visual installer; we'll do everything in a terminal.
+  Close the visual installer; we'll do everything in the Console.
 * [Connect to the internet](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
+  I use `nmtui`.
 * You may install your favorite text editor to use instead of `nano`.
   I get `nvim` using `nix-shell -p neovim`.
 * Download a flake and disko file to build off of using:
   ```sh
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/disko.nix -o /tmp/disko.nix
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/flake.nix -o /tmp/flake.nix
   ```
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
 * Modify the disko file as you see fit using `nano /tmp/disko.nix`.
