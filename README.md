@@ -33,7 +33,7 @@ Note that my process is slightly different from his, so follow these instruction
   ```
 * Modify the disko file as you see fit using `nano /tmp/disko.nix`.
   Note that the `swap` partition should be at least 1.5x the amount of RAM you have installed (check using `free -g -h -t`) if you want the PC to support hibernation.
-* Find the disk you want to install NixOS onto using `lsblk`.
+* Find the `<disk_name>` you want to install NixOS onto using `lsblk`.
   You're looking for something like `vda`, `sda`, `nvme0`, or `nvme0n1`.
 * Partition your disk using:
   ```sh
@@ -41,7 +41,7 @@ Note that my process is slightly different from his, so follow these instruction
   ```
 * Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`
 * Install git using `nix-shell -p git`.
-* Clone this repository into `/mnt/etc/nixos` using:
+* Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
   ```sh
   cd /mnt/etc/nixos
   git init
@@ -49,7 +49,7 @@ Note that my process is slightly different from his, so follow these instruction
   git fetch
   git reset --mixed origin/main
   ```
-* Move your config files into a new host directory using:
+* Move your config files into a new directory for this host (`<host_name>`) using:
   ```sh
   cd /mnt/etc/nixos
   mkdir hosts/<host_name>
@@ -91,7 +91,7 @@ Note that my process is slightly different from his, so follow these instruction
     system.stateVersion = <leave_as_default_value>;
   }
   ```
-* Modify your flake to specify your host name and disk name using `nano /mnt/etc/nixos/flake.nix`:
+* Modify your flake to specify your `<host_name>` and `<disk_name>`  using `nano /mnt/etc/nixos/flake.nix`:
   ```nix
   {
     <...>
@@ -117,10 +117,6 @@ Note that my process is slightly different from his, so follow these instruction
 ### Install User Preferences
 
 * See [my preferred Nix Home Manager config](https://github.com/mboyea/home-manager).
-
-### TODO List
-
-* Figure out settings file to declare hostname and other stuff for the `flake.nix` and `configuration.nix` to gobble up.
 
 ### Contribute
 
