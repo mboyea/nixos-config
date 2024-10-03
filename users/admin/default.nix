@@ -22,13 +22,14 @@
     # users.admin = {
     #   directories = [
     #     "code"
-    #     "docs"
+    #     "desktop"
+    #     "documents"
     #     "downloads"
-    #     "imgs"
+    #     "images"
     #     "music"
-    #     "vids"
+    #     "videos"
     #     ".config"
-    #     # do not remove the following directories
+    #     # the following directories are essential
     #     ".config/home-manager"
     #     ".config/nix"
     #     ".local/state/home-manager"
@@ -39,3 +40,4 @@
     # };
   };
 }
+

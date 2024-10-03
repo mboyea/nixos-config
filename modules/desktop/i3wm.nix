@@ -39,5 +39,6 @@
       xterm.enable = false;
     };
   };
+  hardware.opengl.enable = true;
 }
 
