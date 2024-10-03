@@ -44,7 +44,7 @@ Note that my process is slightly different from his, so follow these instruction
 * Install git using `nix-shell -p git`.
 * Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
   ```sh
-  sudo mkdir /mnt/etc/nixos
+  sudo mkdir -p /mnt/etc/nixos
   cd /mnt/etc/nixos
   git init
   git remote add origin https://github.com/<repo_path>
