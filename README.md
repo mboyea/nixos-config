@@ -15,9 +15,18 @@ These configuration files are to be used during the installation of [NixOS] to c
 
 ### Install System
 
+First, a few notes for newbies in the console.
+
+* You can type `man` before a command name to learn what it does.
+  For example, `man ls` tells you all options for how to list a directory.
+* To copy and paste in the console, you must use `Ctrl+Shift+C` and `Ctrl+Shift+V` respectively.
+  This is because `Ctrl+C` cancels a program and `Ctrl+V` literally inserts the next character typed.
+
 For a video to help you understand the installation process, see [Perfect NixOS | Impermanence Setup](https://www.youtube.com/watch?v=YPKwkWtK7l0) by Vimjoyer.
 My thanks go out to him for helping me to learn NixOS.
 Note that my process is slightly different from his, so follow these instructions word for word after watching the video.
+
+#### Prepare The Installer
 
 * [Download a graphical NixOS installer](https://nixos.org/download/).
   The graphical installers connect to wireless internet networks easier.
@@ -27,13 +36,17 @@ Note that my process is slightly different from his, so follow these instruction
 * [Connect to the internet](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
   I use `nmtui`.
 * You may install your favorite text editor to use instead of `nano`.
-  I get `nvim` using `nix-shell -p neovim`.
+  I get `nvim` using `nix-shell -p neovim`. Search for yours at [search.nixos.org](https://search.nixos.org/packages).
+
+#### Partition The Drives
+
 * Download a flake and disko file to build off of using:
   ```sh
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/disko.nix -o /tmp/disko.nix
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/flake.nix -o /tmp/flake.nix
   ```
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
-* Modify the disko file as you see fit using `nano /tmp/disko.nix`.
+* Modify the [disko](https://github.com/nix-community/disko) file as you see fit using `nano /tmp/disko.nix`.
   Note that the `swap` partition should be at least 1.5x the amount of RAM you have installed (check using `free -g -h -t`) if you want the PC to support hibernation.
 * Find the `<disk_name>` you want to install NixOS onto using `lsblk`.
   You're looking for something like `vda`, `sda`, `nvme0`, or `nvme0n1`.
@@ -41,12 +54,15 @@ Note that my process is slightly different from his, so follow these instruction
   ```sh
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"/dev/<disk_name>"'
   ```
-* Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`
+
+#### Load NixOS
+
+* Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`.
 * Install git using `nix-shell -p git`.
 * Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
   ```sh
-  sudo mkdir -p /mnt/etc/nixos
   cd /mnt/etc/nixos
+  # NOTE THIS DOES NOT WORK, MUST FIX BY CURL
   git init
   git remote add origin https://github.com/<repo_path>
   git fetch
