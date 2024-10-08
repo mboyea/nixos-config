@@ -40,10 +40,9 @@ Note that my process is slightly different from his, so follow these instruction
 
 #### Partition The Drives
 
-* Download a flake and disko file to build off of using:
+* Download the quickstart disko file using:
   ```sh
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/disko.nix -o /tmp/disko.nix
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/maybenixlaptop/flake.nix -o /tmp/flake.nix
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/disko.nix -o /tmp/disko.nix
   ```
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
 * Modify the [disko](https://github.com/nix-community/disko) file as you see fit using `nano /tmp/disko.nix`.
@@ -58,6 +57,15 @@ Note that my process is slightly different from his, so follow these instruction
 #### Load NixOS
 
 * Generate the default NixOS configuration using `sudo nixos-generate-config --no-filesystems --root /mnt`.
+* Download the quickstart configuration file using:
+  ```sh
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/configuration.nix -o /mnt/etc/nixos/configuration.nix
+  ```
+* Run `sudo nixos-rebuild boot && reboot`.
+* Log in to user `admin` using password `admin`.
+
+#### TODO Install System
+
 * Install git using `nix-shell -p git`.
 * Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
   ```sh
