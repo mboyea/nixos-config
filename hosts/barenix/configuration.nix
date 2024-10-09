@@ -27,7 +27,7 @@
   };
 
   users.users.admin = {
-    password = admin;
+    password = "admin";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
