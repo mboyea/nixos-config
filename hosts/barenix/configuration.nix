@@ -13,7 +13,7 @@
 
   boot.loader.systemd-boot.enable = true;
 
-  networking.hostName = "quickstartnix";
+  networking.hostName = "barenix";
 
   environment = {
     systemPackages = with pkgs; [
