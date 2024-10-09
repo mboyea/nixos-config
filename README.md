@@ -40,9 +40,9 @@ Note that my process is slightly different from his, so follow these instruction
 
 #### Partition The Drives
 
-* Download the quickstart disko file using:
+* Download the bare disko configuration file using:
   ```sh
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/disko.nix -o /tmp/disko.nix
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/disko.nix -o /tmp/disko.nix
   ```
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
 * Modify the [disko](https://github.com/nix-community/disko) file as you see fit using `nano /tmp/disko.nix`.
@@ -54,20 +54,24 @@ Note that my process is slightly different from his, so follow these instruction
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"/dev/<disk_name>"'
   ```
 
-#### Load NixOS
+#### Load Bare NixOS
 
-* Generate the default NixOS configuration using:
+* Generate bare NixOS configuration files using:
   ```sh
   sudo nixos-generate-config --no-filesystems --root /mnt
+  rm -r /mnt/etc/nixos/configuration.nix
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
+  mv /tmp/disko.nix /mnt/etc/nixos
   ```
-* Download the quickstart configuration file using:
-  ```sh
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/configuration.nix -o /mnt/etc/nixos/configuration.nix
-  ```
-* Run `sudo nixos-rebuild boot && reboot`.
+* Run `nixos-install && reboot` and wait for the laptop to boot into NixOS.
 * Log in to user `admin` using password `admin`.
+  It is now safe to disconnect the flash drive.
 
-#### TODO Install System
+#### Install NixOS System
+
+
+
+* TODO
 
 * Install git using `nix-shell -p git`.
 * Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
