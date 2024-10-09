@@ -61,7 +61,7 @@ Note that my process is slightly different from his, so follow these instruction
   sudo nixos-generate-config --no-filesystems --root /mnt
   sudo rm -r /mnt/etc/nixos/configuration.nix
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
-  mv /tmp/disko.nix /mnt/etc/nixos
+  sudo mv /tmp/disko.nix /mnt/etc/nixos
   ```
 * Run `nixos-install && reboot` and wait for the laptop to boot into NixOS.
 * Log in to user `admin` using password `admin`.
