@@ -56,13 +56,13 @@ Note that my process is slightly different from his, so follow these instruction
 
 #### Load NixOS
 
-* Download the quickstart configuration file using:
-  ```sh
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/configuration.nix -o /mnt/etc/nixos/configuration.nix
-  ```
 * Generate the default NixOS configuration using:
   ```sh
   sudo nixos-generate-config --no-filesystems --root /mnt
+  ```
+* Download the quickstart configuration file using:
+  ```sh
+  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/quickstartnix/configuration.nix -o /mnt/etc/nixos/configuration.nix
   ```
 * Run `sudo nixos-rebuild boot && reboot`.
 * Log in to user `admin` using password `admin`.
