@@ -60,7 +60,7 @@ Note that my process is slightly different from his, so follow these instruction
   ```sh
   sudo nixos-generate-config --no-filesystems --root /mnt
   sudo rm -r /mnt/etc/nixos/configuration.nix
-  curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
+  sudo curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
   sudo mv /tmp/disko.nix /mnt/etc/nixos
   ```
 * Run `nixos-install && reboot` and wait for the laptop to boot into NixOS.
