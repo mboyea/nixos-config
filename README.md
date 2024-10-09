@@ -59,7 +59,7 @@ Note that my process is slightly different from his, so follow these instruction
 * Generate bare NixOS configuration files using:
   ```sh
   sudo nixos-generate-config --no-filesystems --root /mnt
-  rm -r /mnt/etc/nixos/configuration.nix
+  sudo rm -r /mnt/etc/nixos/configuration.nix
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
   mv /tmp/disko.nix /mnt/etc/nixos
   ```
