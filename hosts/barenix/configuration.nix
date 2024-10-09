@@ -30,7 +30,7 @@
     password = admin;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
-  }
+  };
 
   # This option declares the oldest NixOS version installed on this machine
   #
