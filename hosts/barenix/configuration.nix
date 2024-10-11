@@ -13,6 +13,8 @@
 
   boot.loader.systemd-boot.enable = true;
 
+  services.xserver.enable = true;
+
   networking = {
     hostName = "barenix";
     networkmanager.enable = true;
@@ -21,6 +23,8 @@
   environment = {
     systemPackages = with pkgs; [
       git
+      gh
+      firefox
       home-manager
       neovim
     ];
