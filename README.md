@@ -13,14 +13,18 @@ These configuration files are to be used during the installation of [NixOS] to c
 * [Fork this repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository) so that you can keep a copy of your own files on GitHub.
   Then when I make updates later, you could easily merge them into your own changes.
 
-### Install System
+### Install Operating System
 
-First, a few notes for newbies in the console.
+First, a few notes for newbies to the Linux Console.
 
 * You can type `man` before a command name to learn what it does.
   For example, `man ls` tells you all options for how to list a directory.
 * To copy and paste in the console, you must use `Ctrl+Shift+C` and `Ctrl+Shift+V` respectively.
   This is because `Ctrl+C` cancels a program and `Ctrl+V` literally inserts the next character typed.
+* You may temporarily install a different text editor to use instead of `nano`.
+  I get `nvim` using `nix-shell -p neovim`.
+  A more beginner-friendly option may be `notepadqq` using `nix-shell -p notepadqq`.
+  Search for your favorites at [search.nixos.org](https://search.nixos.org/packages).
 
 For a video to help you understand the installation process, see [Perfect NixOS | Impermanence Setup](https://www.youtube.com/watch?v=YPKwkWtK7l0) by Vimjoyer.
 My thanks go out to him for helping me to learn NixOS.
@@ -29,14 +33,12 @@ Note that my process is slightly different from his, so follow these instruction
 #### Prepare The Installer
 
 * [Download a graphical NixOS installer](https://nixos.org/download/).
-  The graphical installers connect to wireless internet networks easier.
+  Graphical NixOS installers have easier methods to connect to wireless internet networks.
 * [Prepare the NixOS installer onto a flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Making_the_installation_media).
 * [Boot the NixOS installer from the flash drive](https://nixos.wiki/wiki/NixOS_Installation_Guide#Booting_the_installation_media).
   Close the visual installer; we'll do everything in the Console.
 * [Connect to the internet](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
   I use `nmtui`.
-* You may install your favorite text editor to use instead of `nano`.
-  I get `nvim` using `nix-shell -p neovim`. Search for yours at [search.nixos.org](https://search.nixos.org/packages).
 
 #### Partition The Drives
 
@@ -54,7 +56,7 @@ Note that my process is slightly different from his, so follow these instruction
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"/dev/<disk_name>"'
   ```
 
-#### Load Bare NixOS
+#### Install (Bare) NixOS
 
 * Generate bare NixOS configuration files using:
   ```sh
@@ -67,37 +69,30 @@ Note that my process is slightly different from his, so follow these instruction
 * Log in to user `admin` using password `admin`.
   It is now safe to disconnect the flash drive.
 
-#### Install NixOS System
+#### Configure NixOS
 
-
-
-* TODO
-
-* Install git using `nix-shell -p git`.
-* Clone this repository (`<repo_path>`) into `/mnt/etc/nixos` using:
+* [Connect to the internet](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
+  I use `nmtui`.
+* Clone this repository (`<repo_path>`) into `~/.config/` using:
   ```sh
-  cd /mnt/etc/nixos
-  # NOTE THIS DOES NOT WORK, MUST FIX BY CURL
-  git init
-  git remote add origin https://github.com/<repo_path>
-  git fetch
-  git reset --mixed origin/main
+  mkdir ~/.config
+  cd ~/.config
+  git clone https://github.com/<repo_path>
   ```
-* Move your config files into a new directory for this host (`<host_name>`) using:
+* Generate complete NixOS configuration files for this host (`<host_name>`) using:
   ```sh
-  cd /mnt/etc/nixos
-  mkdir hosts/<host_name>
-  mv -t hosts/<host_name> /tmp/disko.nix /tmp/flake.nix configuration.nix hardware-configuration.nix
+  cd ~/.config/nixos-config
+  mkdir -p hosts/<host_name>
+  cd ~/.config/nixos-config/hosts/<host_name>
+  mv -t . /etc/nixos/hardware-configuration.nix /etc/nixos/disko.nix
+  cp -t . ../maybenixlaptop/configuration.nix ../maybenixlaptop/flake.nix
   ```
-* Create symlinks to the config files using:
+* Create symlinks to this host's config files using:
   ```sh
-  cd /mnt/etc/nixos
-  ln -s hosts/<host_name>/configuration.nix configuration.nix
-  ln -s hosts/<host_name>/hardware-configuration.nix hardware-configuration.nix
-  ln -s hosts/<host_name>/disko.nix disko.nix
-  ln -s hosts/<host_name>/flake.nix flake.nix
+  cd ~/.config/nixos-config/hosts/<host_name>
+  ln -s -t ~/.config/nixos-config configuration.nix disko.nix flake.nix hardware-configuration.nix
   ```
-* Modify your configuration using `nano /mnt/etc/nixos/configuration.nix`:
+* Modify the configuration file to specify your `<host_name>` using `nano ~/.config/nixos-config/configuration.nix`:
   ```nix
   # For help editing Nix config files, use any of the following
   #  man configuration.nix
@@ -117,6 +112,7 @@ Note that my process is slightly different from his, so follow these instruction
     environment = {
       systemPackages = with pkgs; [
         git
+        gh
         home-manager
       ];
     };
@@ -125,28 +121,33 @@ Note that my process is slightly different from his, so follow these instruction
     system.stateVersion = <leave_as_default_value>;
   }
   ```
-* Modify your flake to specify your `<host_name>` and `<disk_name>`  using `nano /mnt/etc/nixos/flake.nix`:
+* Modify the flake file to specify your `<host_name>` and `<disk_name>`  using `nano ~/.config/nixos-config/flake.nix`:
   ```nix
   {
     <...>
     outputs = { nixpkgs, ... } @ inputs:
-      let
-        <...>
-        hostName = "<host_name>";
-        diskName = "<disk_name>";
-      in {
-        <...>
-      };
+    let
+      <...>
+      hostName = "<host_name>";
+      diskName = "<disk_name>";
+    in {
+      <...>
     };
   }
+  ```
+* Replace the directory `/etc/nixos` with a symlink to the configuration directory using:
+  ```sh
+  rm -r /etc/nixos
+  ln -s ~/.config/nixos-config /etc/nixos
   ```
 * Run `sudo nixos-rebuild boot && reboot`.
 * Log in to user `admin` using password `admin`.
 
-### Create Users
+### Create & Modify Users
 
-* TODO: overwrite user `admin` password
-* TODO: Add users
+#### Overwrite Admin Password
+
+#### Create New User
 
 ### Install User Preferences
 
