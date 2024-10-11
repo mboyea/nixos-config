@@ -11,13 +11,13 @@
     };
   };
   outputs = { nixpkgs, ... } @ inputs:
-    let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      hostName = "maybenixlaptop";
-      diskName = "/dev/nvme0n1";
-    in {
+  let
+    lib = nixpkgs.lib;
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+    hostName = "maybenixlaptop";
+    diskName = "/dev/nvme0n1";
+  in {
     nixosConfigurations = {
       ${hostName} = lib.nixosSystem {
         inherit system;
