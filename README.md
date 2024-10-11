@@ -28,7 +28,7 @@ First, a few notes for newbies to the Linux Console.
 
 For a video to help you understand the installation process, see [Perfect NixOS | Impermanence Setup](https://www.youtube.com/watch?v=YPKwkWtK7l0) by Vimjoyer.
 My thanks go out to him for helping me to learn NixOS.
-Note that my process is slightly different from his, so follow these instructions word for word after watching the video.
+Note that my process is different from his, so follow these instructions word for word after watching the video.
 
 #### Prepare The Installer
 
@@ -65,7 +65,7 @@ Note that my process is slightly different from his, so follow these instruction
   sudo curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
   sudo mv /tmp/disko.nix /mnt/etc/nixos
   ```
-* Run `sudo nixos-install && reboot` and wait for the laptop to boot into NixOS.
+* Run `sudo nixos-install && reboot` and wait for the computer to boot into NixOS.
 * Log in to user `admin` using password `admin`.
   It is now safe to disconnect the flash drive.
 
