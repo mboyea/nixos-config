@@ -89,8 +89,8 @@ Note that my process is different from his, so follow these instructions word fo
   ```
 * Create symlinks to this host's config files using:
   ```sh
-  cd ~/.config/nixos-config/hosts/<host_name>
-  ln -s -t ~/.config/nixos-config configuration.nix disko.nix flake.nix hardware-configuration.nix
+  cd ~/.config/nixos-config
+  ln -s -t . hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
   ```
 * Modify the configuration file to specify your `<host_name>` using `nano ~/.config/nixos-config/configuration.nix`:
   ```nix
