@@ -16,7 +16,7 @@
   services.xserver = {
     enable = true;
     displayManager.startx.enable = true;
-  }
+  };
 
   networking = {
     hostName = "barenix";
