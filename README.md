@@ -137,8 +137,8 @@ Note that my process is different from his, so follow these instructions word fo
   ```
 * Replace the directory `/etc/nixos` with a symlink to the configuration directory using:
   ```sh
-  rm -r /etc/nixos
-  ln -s ~/.config/nixos-config /etc/nixos
+  sudo rm -r /etc/nixos
+  sudo ln -s ~/.config/nixos-config /etc/nixos
   ```
 * Run `sudo nixos-rebuild boot && reboot`.
 * Log in to user `admin` using password `admin`.
