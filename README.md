@@ -8,6 +8,12 @@ These configuration files are to be used during the installation of [NixOS] to c
 * [Impermanence] is used to wipe most of the filesystem on every boot, reverting non-declarative changes to the system.
 * A user-level [Nix Home Manager] installation enables users to install programs and modify user preferences without root-level permissions.
 
+The operating system is setup to be installed on a single storage device in a computer. This storage device is ideally a Solid State Drive (SSD) or a Hard Disk Drive (HDD), and will have a specific `<disk_name>`.
+
+Each computer that uses this is called a `host`. Every host should have a unique `<host_name>`.
+
+Each person that uses this is called a `user`. Every user should have a unique `user_name`.
+
 ### Fork Files
 
 * [Fork this repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo#forking-a-repository) so that you can keep a copy of your own files on GitHub.
@@ -42,7 +48,9 @@ Note that my process is different from his, so follow these instructions word fo
 
 #### Partition The Drives
 
-* Download the bare disko configuration file using:
+Reproducibility is ideal, so we use [Disko] to declare our drive partitions instead of creating them manually.
+
+* Download a basic disko configuration file using:
   ```sh
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/disko.nix -o /tmp/disko.nix
   ```
@@ -56,41 +64,43 @@ Note that my process is different from his, so follow these instructions word fo
   sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /tmp/disko.nix --arg device '"/dev/<disk_name>"'
   ```
 
-#### Install (Bare) NixOS
+#### Install NixOS
 
-* Generate bare NixOS configuration files using:
+* Copy this repository (`<github_url>`) to `/mnt/etc/nixos` using:
+  ```sh
+  sudo mkdir -p /mnt/etc
+  nix-shell -p git && sudo git clone <github_url> /mnt/etc/nixos
+  sudo rm -rf /mnt/etc/nixos/.git
+  ```
+* Generate NixOS configuration files using:
   ```sh
   sudo nixos-generate-config --no-filesystems --root /mnt
-  sudo rm -r /mnt/etc/nixos/configuration.nix
-  sudo curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/configuration.nix -o /mnt/etc/nixos/configuration.nix
+  sudo rm -rf /mnt/etc/nixos/configuration.nix
   sudo mv /tmp/disko.nix /mnt/etc/nixos
+  sudo cp -t /mnt/etc/nixos /mnt/etc/nixos/hosts/barenix/configuration.nix /mnt/etc/nixos/hosts/barenix/flake.nix
   ```
 * Run `sudo nixos-install && reboot` and wait for the computer to boot into NixOS.
 * Log in to user `admin` using password `admin`.
   It is now safe to disconnect the flash drive.
 
-#### Configure NixOS
+#### Configure a Host
 
 * [Connect to the internet](https://nixos.org/manual/nixos/stable/#sec-installation-manual-networking).
   I use `nmtui`.
-* Clone this repository (`<repo_path>`) into `~/.config/` using:
+* Clone this repository (`<github_url>`) into `~/.config/` using:
   ```sh
   mkdir ~/.config
-  cd ~/.config
-  git clone https://github.com/<repo_path>
+  git clone <github_url> ~/.config/nixos
   ```
-* Generate complete NixOS configuration files for this host (`<host_name>`) using:
+* Copy the configuration files for this host (`<host_name>`) using:
   ```sh
-  cd ~/.config/nixos-config
-  mkdir -p hosts/<host_name>
-  cd ~/.config/nixos-config/hosts/<host_name>
-  mv -t . /etc/nixos/hardware-configuration.nix /etc/nixos/disko.nix
-  cp -t . ../maybenixlaptop/configuration.nix ../maybenixlaptop/flake.nix
+  mkdir -p ~/.config/nixos/hosts/<host_name>
+  cd /etc/nixos
+  cp -t ~/.config/nixos/hosts/<host_name> /etc/nixos/ configuration.nix hardware-configuration.nix flake.nix disko.nix
   ```
-* Create symlinks to this host's config files using:
+* Create symlinks to this host's config files in the base directory of your configuration using:
   ```sh
-  cd ~/.config/nixos-config
-  ln -s -t . hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
+  ln -s -t ~/.config/nixos-config hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
   ```
 * Modify the configuration file to specify your `<host_name>` using `nano ~/.config/nixos-config/configuration.nix`:
   ```nix
@@ -135,23 +145,21 @@ Note that my process is different from his, so follow these instructions word fo
     };
   }
   ```
-* Replace the directory `/etc/nixos` with a symlink to the configuration directory using:
+* Symlink to the configuration in the `/etc/nixos` directory using:
   ```sh
-  sudo rm -r /etc/nixos
-  sudo ln -s ~/.config/nixos-config /etc/nixos
+  sudo rm -rf /etc/nixos/*
+  sudo ln -t /etc/nixos ~/.config/nixos-config/flake.nix
   ```
 * Run `sudo nixos-rebuild boot && reboot`.
 * Log in to user `admin` using password `admin`.
 
-### Create & Modify Users
+### Create Users
 
-#### Overwrite Admin Password
+### Modify User Preferences
 
-#### Create New User
+In NixOS, it is widely recommended that users install applications and modify their configurations using [Nix Home Manager].
 
-### Install User Preferences
-
-* See [my preferred Nix Home Manager config](https://github.com/mboyea/home-manager).
+See [my preferred Nix Home Manager config](https://github.com/mboyea/home-manager) for guidance.
 
 ### Contribute
 
