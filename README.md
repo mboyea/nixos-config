@@ -95,7 +95,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
     outputs = { nixpkgs, ... } @ inputs:
     let
       <...>
-      diskName = "<disk_name>";
+      diskName = "<disk_name>";           # modify this
     in {
       <...>
     };
@@ -131,7 +131,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   ln -s -t ~/.config/nixos-config hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
   ```
 
-* Modify the configuration file to specify your `<host_name>` using `nano ~/.config/nixos-config/configuration.nix`:
+* Modify the configuration file to specify your `<host_name>` and correcting the imports paths using `nano ~/.config/nixos-config/configuration.nix`:
 
   ```nix
   # For help editing Nix config files, use any of the following
@@ -143,11 +143,11 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   { config, lib, pkgs, inputs, ... }: {
     imports = [
       ./hardware-configuration.nix
-      ../../modules
-      ../../users
+      ../../modules                       # modify this
+      ../../users                         # modify this
     ];
   
-    networking.hostName = "<host_name>";
+    networking.hostName = "<host_name>";  # modify this
   
     environment = {
       systemPackages = with pkgs; [
@@ -170,7 +170,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
     outputs = { nixpkgs, ... } @ inputs:
     let
       <...>
-      hostName = "<host_name>";
+      hostName = "<host_name>";           # modify this
       <...>
     in {
       <...>

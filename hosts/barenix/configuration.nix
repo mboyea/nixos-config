@@ -7,8 +7,8 @@
 { config, lib, pkgs, inputs, ... }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules
-    ../../users
+    ./modules
+    ./users
   ];
 
   networking.hostName = "barenix";
