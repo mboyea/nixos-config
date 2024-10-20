@@ -102,7 +102,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   }
   ```
 
-* Run `sudo nixos-install && reboot` and wait for the computer to boot into NixOS.
+* Run `sudo nixos-install --flake /mnt/etc/nixos#barenix && reboot` and wait for the computer to boot into NixOS.
 * Log in to user `admin` using password `admin`.
   It is now safe to disconnect the flash drive.
 
