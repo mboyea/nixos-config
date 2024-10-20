@@ -5,7 +5,7 @@
     hashedPassword = import ./pass.nix;
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "audio" ];
-  }
+  };
 
   systemd.tmpfiles.rules = [
     "d /persist/users/home/admin 0700 admin users -"
