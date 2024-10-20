@@ -12,32 +12,32 @@
     # "L+ /etc/nixos/users/admin/home-manager - - - - /home/admin/.config/home-manager"
   ];
 
-  environment.persistence."/persist/users" = {
-    hideMounts = true;
-    directories = [
-      "/run/user"
-      "/home/admin"
-    ];
-    # DECLARATIVE PERSISTENCE EXAMPLE:
-    # users.admin = {
-    #   directories = [
-    #     "code"
-    #     "desktop"
-    #     "documents"
-    #     "downloads"
-    #     "images"
-    #     "music"
-    #     "videos"
-    #     ".config"
-    #     # the following directories are essential
-    #     ".config/home-manager"
-    #     ".config/nix"
-    #     ".local/state/home-manager"
-    #     ".local/state/nix"
-    #     ".local/share/home-manager"
-    #     ".local/share/nix"
-    #   ];
-    # };
-  };
+  # environment.persistence."/persist/users" = {
+  #   hideMounts = true;
+  #   directories = [
+  #     "/run/user"
+  #     "/home/admin"
+  #   ];
+  #   # DECLARATIVE PERSISTENCE EXAMPLE:
+  #   # users.admin = {
+  #   #   directories = [
+  #   #     "code"
+  #   #     "desktop"
+  #   #     "documents"
+  #   #     "downloads"
+  #   #     "images"
+  #   #     "music"
+  #   #     "videos"
+  #   #     ".config"
+  #   #     # the following directories are essential
+  #   #     ".config/home-manager"
+  #   #     ".config/nix"
+  #   #     ".local/state/home-manager"
+  #   #     ".local/state/nix"
+  #   #     ".local/share/home-manager"
+  #   #     ".local/share/nix"
+  #   #   ];
+  #   # };
+  # };
 }
 
