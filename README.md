@@ -66,10 +66,11 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 
 #### Install NixOS
 
+* Run `nix-shell -p git` to install git temporarily.
 * Copy this repository (`<github_url>`) to `/mnt/etc/nixos` using:
   ```sh
   sudo mkdir -p /mnt/etc
-  nix-shell -p git && sudo git clone <github_url> /mnt/etc/nixos
+  sudo git clone <github_url> /mnt/etc/nixos
   sudo rm -rf /mnt/etc/nixos/.git
   ```
 * Generate NixOS configuration files using:
