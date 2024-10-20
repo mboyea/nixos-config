@@ -1,12 +1,12 @@
 {
   imports = [
-    ./nix
     ./boot
-    ./shell
-    ./login
     ./desktop
-    ./time
+    ./login
     ./network
+    ./nix
+    ./shell
     ./sound
+    ./time
   ];
 }

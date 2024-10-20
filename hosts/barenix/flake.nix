@@ -1,7 +1,7 @@
 {
   description = "nixos config flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,8 +15,8 @@
     lib = nixpkgs.lib;
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    hostName = "maybenixlaptop";
-    diskName = "/dev/nvme0n1";
+    hostName = "barenix";
+    diskName = "<disk_name>";
   in {
     nixosConfigurations = {
       ${hostName} = lib.nixosSystem {

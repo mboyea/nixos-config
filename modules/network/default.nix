@@ -1,6 +1,5 @@
 { config, lib, pkgs, inputs, ... }: {
   networking = {
-    hostName = "maybenixlaptop";
     networkmanager.enable = true;
     firewall = {
       enable = true;
@@ -11,7 +10,8 @@
 
   security.polkit.enable = true;
 
-  time.timeZone = "America/Chicago";
+  time.timeZone = lib.mkDefault "America/Chicago";
+  services.automatic-timezoned.enable = true;
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.printing.enable = true;

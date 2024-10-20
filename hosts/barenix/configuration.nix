@@ -7,32 +7,22 @@
 { config, lib, pkgs, inputs, ... }: {
   imports = [
     ./hardware-configuration.nix
-    "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-    ./disko.nix
+    ../../modules
+    ../../users
   ];
 
-  boot.loader.systemd-boot.enable = true;
-
-  networking = {
-    hostName = "barenix";
-    networkmanager.enable = true;
-  };
+  networking.hostName = "barenix";
 
   environment = {
     systemPackages = with pkgs; [
       git
       gh
+      home-manager
       neovim
     ];
     variables = {
       EDITOR = "nvim";
     };
-  };
-
-  users.users.admin = {
-    password = "admin";
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" ];
   };
 
   # This option declares the oldest NixOS version installed on this machine
@@ -48,7 +38,5 @@
   #
   # For more information, see `man configuration.nix` or
   # https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion
-
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 }
-
