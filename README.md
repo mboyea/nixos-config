@@ -87,7 +87,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   sudo cp -t /mnt/etc/nixos /mnt/etc/nixos/hosts/barenix/configuration.nix /mnt/etc/nixos/hosts/barenix/flake.nix
   ```
 
-* Modify the flake file to specify your `<disk_name>` using `sudo nano /mnt/etc/nixos/hosts/barenix/flake.nix`:
+* Modify the flake file to specify your `<disk_name>` using `sudo nano /mnt/etc/nixos/flake.nix`:
 
   ```nix
   {
