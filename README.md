@@ -27,9 +27,8 @@ First, a few notes for newbies to the Linux Console.
   For example, `man ls` tells you all options for how to list a directory.
 * To copy and paste in the console, you must use `Ctrl+Shift+C` and `Ctrl+Shift+V` respectively.
   This is because `Ctrl+C` cancels a program and `Ctrl+V` literally inserts the next character typed.
-* You may temporarily install a different text editor to use instead of `nano`.
+* You may temporarily install a preferred text editor to use instead of `nano`.
   I get `nvim` using `nix-shell -p neovim`.
-  A more beginner-friendly option may be `notepadqq` using `nix-shell -p notepadqq`.
   Search for your favorites at [search.nixos.org](https://search.nixos.org/packages).
 
 For a video to help you understand the installation process, see [Perfect NixOS | Impermanence Setup](https://www.youtube.com/watch?v=YPKwkWtK7l0) by Vimjoyer.
@@ -50,14 +49,14 @@ Note that this process is different from his, so follow these instructions word 
 
 Reproducibility is ideal, so we use [Disko] to declare our drive partitions instead of creating them manually.
 
-* Download a basic disko configuration file using:
+* Download a disko configuration file using:
 
   ```sh
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/disko.nix -o /tmp/disko.nix
   ```
 
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
-* Modify the [disko](https://github.com/nix-community/disko) file as you see fit using `nano /tmp/disko.nix`.
+* Modify the disko file as you see fit using `nano /tmp/disko.nix`.
   Note that the `swap` partition should be at least 1.5x the amount of RAM you have installed (check using `free -g -h -t`) if you want the PC to support hibernation.
 * Find the `<disk_name>` you want to install NixOS onto using `lsblk`.
   You're looking for something like `vda`, `sda`, `nvme0`, or `nvme0n1`.
@@ -70,7 +69,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 #### Install NixOS
 
 * Run `nix-shell -p git` to install git temporarily.
-  You may also want to install your favorite text editor at this time.
+  You may also want to install your preferred text editor at this time.
 * Copy this repository (`<github_url>`) to `/mnt/etc/nixos` using:
 
   ```sh
@@ -101,6 +100,13 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
       <...>
     };
   }
+  ```
+
+* Copy your configuration files to `/persist` using:
+
+  ```sh
+  sudo mkdir -p /persist/system/etc
+  sudo cp /mnt/etc/nixos /persist/system/etc
   ```
 
 * Run `sudo nixos-install --flake /mnt/etc/nixos#barenix && reboot` and wait for the computer to boot into NixOS.
