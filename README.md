@@ -135,10 +135,10 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 * Create symlinks to this host's config files in the base directory of your configuration using:
 
   ```sh
-  ln -s -t ~/.config/nixos-config hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
+  ln -s -t ~/.config/nixos hosts/<host_name>/configuration.nix hosts/<host_name>/disko.nix hosts/<host_name>/flake.nix hosts/<host_name>/hardware-configuration.nix
   ```
 
-* Modify the configuration file to specify your `<host_name>` and correct the imports paths using `nano ~/.config/nixos-config/configuration.nix`:
+* Modify the configuration file to specify your `<host_name>` and correct the imports paths using `nano ~/.config/nixos/configuration.nix`:
 
   ```nix
   # For help editing Nix config files, use any of the following
@@ -156,20 +156,11 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   
     networking.hostName = "<host_name>";  # modify this
   
-    environment = {
-      systemPackages = with pkgs; [
-        git
-        gh
-        home-manager
-      ];
-    };
-
-    # Do not modify the following
-    system.stateVersion = <leave_as_default_value>;
+    <...>
   }
   ```
 
-* Modify the flake file to specify your `<host_name>` using `nano ~/.config/nixos-config/flake.nix`:
+* Modify the flake file to specify your `<host_name>` using `nano ~/.config/nixos/flake.nix`:
 
   ```nix
   {
@@ -189,10 +180,11 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 
   ```sh
   sudo rm -rf /etc/nixos/*
-  sudo ln -t /etc/nixos ~/.config/nixos-config/flake.nix
+  sudo ln -s -t /etc/nixos ~/.config/nixos/flake.nix
   ```
 
-* Run `sudo nixos-rebuild boot && reboot`.
+* Stage the configuration to git (NixOS will fail to build a configuration unless the git repository is staged)
+* Run `sudo nixos-rebuild boot --flake etc/nixos#<host_name> && reboot`.
 * Log in to user `admin` using password `admin`.
 
 ### Create Users
