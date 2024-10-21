@@ -129,7 +129,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   ```sh
   mkdir -p ~/.config/nixos/hosts/<host_name>
   cd /etc/nixos
-  cp -t ~/.config/nixos/hosts/<host_name> /etc/nixos/ configuration.nix hardware-configuration.nix flake.nix disko.nix
+  cp -t ~/.config/nixos/hosts/<host_name> configuration.nix hardware-configuration.nix flake.nix disko.nix
   ```
 
 * Create symlinks to this host's config files in the base directory of your configuration using:
