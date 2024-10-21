@@ -105,8 +105,8 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 * Copy your configuration files to `/persist` using:
 
   ```sh
-  sudo mkdir -p /persist/system/etc
-  sudo cp -r /mnt/etc/nixos /persist/system/etc
+  sudo mkdir -p /mnt/persist/system/etc
+  sudo cp -r /mnt/etc/nixos /mnt/persist/system/etc
   ```
 
 * Run `sudo nixos-install --flake /mnt/etc/nixos#barenix && reboot` and wait for the computer to boot into NixOS.
