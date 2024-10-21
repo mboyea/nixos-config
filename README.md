@@ -70,6 +70,7 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
 #### Install NixOS
 
 * Run `nix-shell -p git` to install git temporarily.
+  You may also want to install your favorite text editor at this time.
 * Copy this repository (`<github_url>`) to `/mnt/etc/nixos` using:
 
   ```sh
