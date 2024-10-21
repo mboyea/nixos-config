@@ -15,7 +15,6 @@
   environment.persistence."/persist/users" = {
     hideMounts = true;
     directories = [
-      "/run/user"
       "/home/admin"
     ];
     # DECLARATIVE PERSISTENCE EXAMPLE:
