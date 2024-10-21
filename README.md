@@ -1,8 +1,8 @@
 # Matthew Boyea's NixOS Config
 
-## A NixOS configuration using disko, impermanence, & nix home manager.
+## A NixOS configuration using Disko, Impermanence, & Nix Home Manager
 
-These configuration files are to be used during the installation of [NixOS] to create my perferred Linux PC in a declarative manner.
+These configuration files are to be used during the installation of [NixOS] to create my preferred Linux PC in a declarative manner.
 
 * [Disko] is used to partition drives declaratively.
 * [Impermanence] is used to wipe most of the filesystem on every boot, reverting non-declarative changes to the system.
@@ -49,14 +49,14 @@ Note that this process is different from his, so follow these instructions word 
 
 Reproducibility is ideal, so we use [Disko] to declare our drive partitions instead of creating them manually.
 
-* Download a disko configuration file using:
+* Download a Disko configuration file using:
 
   ```sh
   curl https://raw.githubusercontent.com/mboyea/nixos-config/main/hosts/barenix/disko.nix -o /tmp/disko.nix
   ```
 
   **Note:** to paste into a terminal, use `Ctrl+Shift+V`.
-* Modify the disko file as you see fit using `nano /tmp/disko.nix`.
+* Modify the Disko file as you see fit using `nano /tmp/disko.nix`.
   Note that the `swap` partition should be at least 1.5x the amount of RAM you have installed (check using `free -g -h -t`) if you want the PC to support hibernation.
 * Find the `<disk_name>` you want to install NixOS onto using `lsblk`.
   You're looking for something like `vda`, `sda`, `nvme0`, or `nvme0n1`.
