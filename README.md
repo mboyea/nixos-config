@@ -183,8 +183,13 @@ Reproducibility is ideal, so we use [Disko] to declare our drive partitions inst
   sudo ln -s -t /etc/nixos ~/.config/nixos/flake.nix
   ```
 
-* Stage the configuration to git (NixOS will fail to build a configuration unless the git repository is staged)
-* Run `sudo nixos-rebuild boot --flake etc/nixos#<host_name> && reboot`.
+* Stage the configuration to git. NixOS will fail to build a configuration unless the git repository is staged.
+* Switch to your newly configured host (`<host_name>`) using:
+
+  ```sh
+  sudo nixos-rebuild boot --flake etc/nixos/hosts/<host_name>#<host_name> && reboot
+  ```
+
 * Log in to user `admin` using password `admin`.
 
 ### Create Users
