@@ -1,0 +1,64 @@
+{
+  "nodes": {
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729281548,
+        "narHash": "sha256-MuojlSnwAJAwfhgmW8ZtZrwm2Sko4fqubCvReqbUzYw=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "a6a3179ddf396dfc28a078e2f169354d0c137125",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1729068498,
+        "narHash": "sha256-C2sGRJl1EmBq0nO98TNd4cbUy20ABSgnHWXLIJQWRFA=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "e337457502571b23e449bf42153d7faa10c0a562",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1729307008,
+        "narHash": "sha256-QUvb6epgKi9pCu9CttRQW4y5NqJ+snKr1FZpG/x3Wtc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a9b86fc2290b69375c5542b622088eb6eca2a7c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "disko": "disko",
+        "impermanence": "impermanence",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
