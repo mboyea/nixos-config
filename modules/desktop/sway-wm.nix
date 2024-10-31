@@ -5,6 +5,12 @@
     wl-clipboard       # copy/paste
     mako               # notifications
     alacritty          # terminal
+    pamixer            # audio
+    pavucontrol        # audio
+    alsa-utils         # audio
+    playerctl          # media players
+    brightnessctl      # screen brightness
+    acpi               # battery status
   ];
   services.gnome.gnome-keyring.enable = true;
   programs.sway = {
