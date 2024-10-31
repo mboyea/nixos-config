@@ -16,6 +16,14 @@
   ];
 
   networking.hostName = "maybenixlaptop";
+  networking.firewall.allowedTCPPorts = [
+    25565
+  ];
+  networking.firewall.allowedUDPPorts = [
+    25565
+  ];
+
+  i18n.defaultLocale = "en_US.UTF-8";
 
   environment = {
     systemPackages = with pkgs; [

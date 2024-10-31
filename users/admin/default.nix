@@ -4,7 +4,7 @@
     # mkpasswd -m sha-512 admin | sed 's/\(\S*\).*/"\1"/' > ~/.config/nixos/users/admin/pass.nix
     hashedPassword = import ./pass.nix;
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+    extraGroups = [ "wheel" "docker" "networkmanager" "audio" "video" ];
   };
 
   systemd.tmpfiles.rules = [
