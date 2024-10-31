@@ -19,7 +19,7 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. 
 # exec "maim | xclip -selection clipboard -t image/png; xclip - selection clipboard -t image/png -o > ~/imags/screenshots/$(date +%F-%H:%M:%S).png"
 bindsym Print exec grim
 # exec "maim -s | xclip -selection clipboard -t image/png; xclip - selection clipboard -t image/png -o > ~/imags/screenshots/$(date +%F-%H:%M:%S).png"
-bindsym $mod+Shift+s exec grim 
+bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t ~/images/
 bindsym --locked XF86MonBrightnessUp exec brightness ctl set +20
 bindsym --locked XF86MonBrightnessDown exec brightness ctl set -20
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% # amixer set Master 5%+
