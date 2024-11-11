@@ -5,6 +5,7 @@
     hashedPassword = import ./pass.nix;
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "networkmanager" "audio" "video" ];
+    useDefaultShell = true;
   };
 
   systemd.tmpfiles.rules = [
