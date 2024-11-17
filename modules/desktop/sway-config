@@ -17,9 +17,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.'
 
 # exec "maim | xclip -selection clipboard -t image/png; xclip - selection clipboard -t image/png -o > ~/imags/screenshots/$(date +%F-%H:%M:%S).png"
-bindsym Print exec grim
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
 # exec "maim -s | xclip -selection clipboard -t image/png; xclip - selection clipboard -t image/png -o > ~/imags/screenshots/$(date +%F-%H:%M:%S).png"
-bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t ~/images/
+bindsym $mod+Shift+s exec sh -c 'grim -g "$(slurp -d)" - | wl-copy'
+
 bindsym --locked XF86MonBrightnessUp exec brightness ctl set +20
 bindsym --locked XF86MonBrightnessDown exec brightness ctl set -20
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5% # amixer set Master 5%+
@@ -27,8 +28,13 @@ bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@
 bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym $mod+$alt+space exec playerctl play-pause
 bindsym --locked XF86AudioNext exec playerctl next
+bindsym $mod+$alt+Right exec playerctl next
+bindsym $mod+$alt+$right exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym $mod+$alt+Left exec playerctl previous
+bindsym $mod+$alt+$left exec playerctl previous
 
 bindsym $mod+Left focus left
 bindsym $mod+$left focus left

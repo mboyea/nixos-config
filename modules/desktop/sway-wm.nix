@@ -7,6 +7,7 @@
     alacritty          # terminal
     pamixer            # audio
     pavucontrol        # audio
+    pulseaudio         # audio
     alsa-utils         # audio
     playerctl          # media players
     brightnessctl      # screen brightness
