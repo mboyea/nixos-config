@@ -114,7 +114,7 @@ output * scale 2
 bar {
   position bottom
 
-  status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+  status_command while date +'%Y-%m-%d %T'; do sleep 1; done
 
   colors {
     statusline #ffffff
