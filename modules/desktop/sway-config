@@ -69,6 +69,7 @@ mode "resize" {
 }
 
 floating_modifier $mod normal
+focus_follows_mouse no
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
