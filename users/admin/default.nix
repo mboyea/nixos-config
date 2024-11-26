@@ -21,13 +21,14 @@
     # DECLARATIVE PERSISTENCE EXAMPLE:
     # users.admin = {
     #   directories = [
-    #     "code"
-    #     "desktop"
-    #     "documents"
-    #     "downloads"
-    #     "images"
-    #     "music"
-    #     "videos"
+    #     "misc" # miscellaneous (default folder, downloads folder)
+    #     "desk" # desktop
+    #     "docs" # documents
+    #     "code" # software
+    #     "imgs" # images
+    #     "vids" # videos
+    #     "asmr" # sounds
+    #     "objs" # objects
     #     ".config"
     #     # the following directories are essential
     #     ".config/home-manager"
