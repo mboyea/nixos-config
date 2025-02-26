@@ -18,10 +18,15 @@
   networking.hostName = "maybenixlaptop";
   networking.firewall.allowedTCPPorts = [
     443
+    992
+    5555
     25565
   ];
   networking.firewall.allowedUDPPorts = [
-    443
+    500
+    1194
+    1701
+    4500
     25565
   ];
 

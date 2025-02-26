@@ -1,6 +1,10 @@
 { config, lib, pkgs, inputs, ... }: {
   networking = {
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dhcp = "dhcpcd";
+      # dns = "systemd-resolved"
+    };
     firewall = {
       enable = true;
       allowedTCPPorts = [];

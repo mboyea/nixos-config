@@ -3,6 +3,8 @@
   # hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # don't suspend on lid close
   services.logind.lidSwitchExternalPower = "ignore";
   systemd.sleep.extraConfig = ''
